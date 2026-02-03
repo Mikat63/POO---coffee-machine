@@ -8,6 +8,11 @@
   flex-direction: row;
 }
 
+.no-click {
+  pointer-events: none;
+  opacity: 0.5; /* optionnel pour indiquer visuellement */
+}
+
 /* coffee machine  */
 .container {
   width: 300px;
@@ -181,7 +186,7 @@
   top: 50px;
   left: calc(50% - 3px);
   background-color: #74372b;
-  animation: liquid 4s 4s linear infinite;
+  animation: liquid 3s 3s linear infinite;
 }
 .coffee-medium__smoke {
   width: 8px;
@@ -230,25 +235,25 @@
   opacity: 0;
   bottom: 50px;
   left: 102px;
-  animation: smokeOne 3s 4s linear infinite;
+  animation: smokeOne 5s 4s linear infinite;
 }
 .coffee-medium__smoke-two {
   opacity: 0;
   bottom: 70px;
   left: 118px;
-  animation: smokeTwo 3s 5s linear infinite;
+  animation: smokeTwo 5s 5s linear infinite;
 }
 .coffee-medium__smoke-three {
   opacity: 0;
   bottom: 65px;
   right: 118px;
-  animation: smokeTwo 3s 6s linear infinite;
+  animation: smokeTwo 5s 6s linear infinite;
 }
 .coffee-medium__smoke-for {
   opacity: 0;
   bottom: 50px;
   right: 102px;
-  animation: smokeOne 3s 5s linear infinite;
+  animation: smokeOne 5s 5s linear infinite;
 }
 .coffee-footer {
   width: 95%;

@@ -12,14 +12,9 @@ onOffMachine.addEventListener("click", () => {
   coffeeMachineIgnition("on/off", "user on or off the coffee machine");
 });
 
-function coffeeMachineIgnition(status, message) {
-  fetch("../process/coffee-machine.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      status: status,
-      message: message,
-    }),
+function coffeeMachineIgnition() {
+  fetch("../process/ignition-machine.php", {
+    method: "GET",
   })
     .then((response) => response.json())
     .then((data) => {
@@ -28,40 +23,43 @@ function coffeeMachineIgnition(status, message) {
 }
 
 function running(data) {
-  if (data.status == "machine on") {
-    machineStatus.style.backgroundColor = "green";
-    screenMessage.textContent = data.message;
+  data.status == true
+    ? (machineStatus.style.backgroundColor = "green")
+    : (machineStatus.style.backgroundColor = "red");
 
+  coffeePod.classList.remove("no-click");
+  screenMessage.textContent = data.message;
+
+  if (data.status == false) {
     setTimeout(() => {
-      screenMessage.textContent = data.pod;
+      coffeePod.classList.add("no-click");
+      screenMessage.textContent = "";
     }, 3000);
   }
 }
 
 coffeePod.addEventListener("click", () => {
-  coffeeMachinePod("pod ok", "pod inserted in the machine");
+  coffeeMachinePod();
 });
 
-function coffeeMachinePod(status, message) {
-  fetch("../process/coffee-machine.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      status: status,
-      message: message,
-    }),
+function coffeeMachinePod() {
+  fetch("../process/insert-pod.php", {
+    method: "GET",
   })
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
+
       insertPod(data);
     });
 }
 
 function insertPod(data) {
-  if (data.message === "pod ok") {
+  if (data.status == true) {
     screenMessage.textContent = data.message;
 
     setTimeout(() => {
+      machineStatus.style.backgroundColor = "orange";
       coffee.forEach((element) => {
         element.hidden = false;
       });
@@ -71,8 +69,10 @@ function insertPod(data) {
       coffee.forEach((element) => {
         element.hidden = true;
       });
-      screenMessage.textContent = data.result;
-    }, 5000);
+
+      screenMessage.textContent = "Votre café est prêt";
+      machineStatus.style.backgroundColor = "green";
+    }, 10000);
   } else {
     screenMessage.textContent = data.message;
   }

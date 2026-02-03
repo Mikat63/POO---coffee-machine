@@ -8,29 +8,31 @@ class CoffeeMachine
 
     public function __construct(private string $brand) {}
 
-
-
-    public function setIgnition(bool $running): string
+    public function getBrand(): string
     {
-        $this->running = $running;
-
-        return $this->running ? "Allumage de votre machine " . $this->brand : "Votre machine " . $this->brand . " Va s'éteindre";
+        return $this->brand;
     }
 
-    public function  setinsertAPod($pod): string
+    public function getIgnition(): bool
     {
-        if (!$this->running) {
-            return "";
-        }
-
-        $this->coffeePod = $pod;
-        return $this->coffeePod ? "Votre café est en cours de préparation" : "Veuillez insérer une dosette";
+        return $this->running;
     }
 
-    public function getCoffeeReady(): string
+    public function setIgnition(): self
     {
+        $this->running = !$this->running;
+        return $this;
+    }
 
 
-        return $this->coffeePod ? "Votre café est prêt" : "";
+    public function getInsertAPod(): bool
+    {
+        return $this->coffeePod;
+    }
+
+    public function setInsertAPod(): self
+    {
+        $this->coffeePod = !$this->coffeePod;
+        return $this;
     }
 }

@@ -1,7 +1,11 @@
 <?php
+session_start();
 require_once "../utils/autoloader.php";
 
-$delonghi = new CoffeeMachine("Delonghi")
+$delonghi = new CoffeeMachine("Delonghi");
+
+$_SESSION['machine'] = $delonghi;
+var_dump($_SESSION['machine']);
 ?>
 
 <!DOCTYPE html>
@@ -43,13 +47,13 @@ $delonghi = new CoffeeMachine("Delonghi")
                 <div class="coffee-medium__smoke coffee-medium__smoke-two coffee" hidden></div>
                 <div class="coffee-medium__smoke coffee-medium__smoke-three coffee" hidden></div>
                 <div class="coffee-medium__smoke coffee-medium__smoke-for coffee" hidden></div>
-                <div tabindex="0" aria-label="Votre tasse" class="coffee-medium__cup coffee"></div>
+                <div tabindex="0" aria-label="Votre tasse" class="coffee-medium__cup"></div>
             </div>
             <div class="coffee-footer"></div>
         </div>
 
 
-        <img id="coffee-pod" tabindex="0" src="../assets/img/coffee-pod.webp" alt="Capsule de café">
+        <img id="coffee-pod" class="no-click" tabindex="0" src="../assets/img/coffee-pod.webp" alt="Capsule de café">
 
     </main>
 </body>
