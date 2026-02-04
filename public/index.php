@@ -5,7 +5,6 @@ require_once "../utils/autoloader.php";
 $delonghi = new CoffeeMachine("Delonghi");
 
 $_SESSION['machine'] = $delonghi;
-var_dump($_SESSION['machine']);
 ?>
 
 <!DOCTYPE html>
@@ -52,9 +51,9 @@ var_dump($_SESSION['machine']);
             <div class="coffee-footer"></div>
         </div>
 
-
+        <div class="pod-container">
         <img id="coffee-pod" class="no-click" tabindex="0" src="../assets/img/coffee-pod.webp" alt="Capsule de café">
-
+        </div>
     </main>
 </body>
 
